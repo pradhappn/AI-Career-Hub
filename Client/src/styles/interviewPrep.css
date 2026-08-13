@@ -1,0 +1,154 @@
+.interview-container {
+  padding: 30px;
+  color: #1d2d3d;
+}
+
+.interview-header {
+  margin-bottom: 30px;
+}
+
+.interview-header h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.05em;
+  margin-bottom: 10px;
+  color: #1d2d3d;
+}
+
+.interview-header p {
+  color: #587085;
+}
+
+.role-card,
+.question-card,
+.evaluation-card {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 25px;
+  border-radius: 22px;
+  border: 1px solid rgba(123, 151, 182, 0.18);
+  box-shadow: 0 16px 30px rgba(110, 138, 169, 0.08);
+}
+
+.role-card {
+  margin-bottom: 25px;
+}
+
+.role-card select,
+.answer-box {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid rgba(125, 152, 184, 0.25);
+  outline: none;
+  border-radius: 12px;
+  background: #f5f9fd;
+  color: #1d2d3d;
+}
+
+.role-card select {
+  margin-bottom: 20px;
+}
+
+.generate-btn,
+.submit-btn {
+  background: linear-gradient(135deg, #8ecbff 0%, #5ea6e8 100%);
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 12px 24px rgba(94, 166, 232, 0.18);
+}
+
+.question-card {
+  margin-top: 20px;
+}
+
+.question-number {
+  color: #2d78c7;
+  font-size: 14px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.question-text {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #1d2d3d;
+}
+
+.answer-box {
+  min-height: 180px;
+  resize: vertical;
+  margin-top: 10px;
+}
+
+.answer-box:focus,
+.role-card select:focus {
+  border-color: rgba(80, 151, 224, 0.7);
+  box-shadow: 0 0 0 4px rgba(128, 189, 244, 0.12);
+}
+
+.submit-btn {
+  margin-top: 20px;
+}
+
+.evaluation-card {
+  margin-top: 25px;
+}
+
+.score-circle {
+  width: 120px;
+  height: 120px;
+  border: 8px solid #7bbaf7;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #1d2d3d;
+}
+
+.feedback-title {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  color: #1d2d3d;
+}
+
+.feedback-text {
+  color: #4b6479;
+  line-height: 1.7;
+}
+
+.improvement-list {
+  margin-top: 15px;
+}
+
+.improvement-list li {
+  margin-bottom: 10px;
+  background: #edf5fd;
+  padding: 12px 14px;
+  border-radius: 10px;
+  list-style: none;
+  color: #355571;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 18px;
+  color: #2d78c7;
+}
+
+@media (max-width: 700px) {
+  .interview-container {
+    padding: 20px 16px;
+  }
+
+  .role-card,
+  .question-card,
+  .evaluation-card {
+    padding: 20px 16px;
+  }
+}

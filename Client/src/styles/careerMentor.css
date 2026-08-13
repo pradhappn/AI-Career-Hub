@@ -1,0 +1,99 @@
+.mentor-container {
+  padding: 30px;
+  color: #1d2d3d;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mentor-header {
+  margin-bottom: 20px;
+}
+
+.mentor-header h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.05em;
+  color: #1d2d3d;
+}
+
+.mentor-header p {
+  color: #587085;
+}
+
+.chat-box {
+  flex: 1;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.82);
+  padding: 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(123, 151, 182, 0.18);
+  box-shadow: 0 16px 30px rgba(110, 138, 169, 0.08);
+}
+
+.user-message,
+.ai-message {
+  max-width: 75%;
+  margin-bottom: 15px;
+  padding: 15px 16px;
+  border-radius: 16px;
+  line-height: 1.6;
+}
+
+.user-message {
+  margin-left: auto;
+  background: linear-gradient(135deg, #8ecbff 0%, #5ea6e8 100%);
+  color: white;
+}
+
+.ai-message {
+  background: #edf5fd;
+  color: #284a66;
+  border: 1px solid rgba(133, 170, 214, 0.18);
+}
+
+.input-area {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.input-area textarea {
+  flex: 1;
+  height: 80px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(125, 152, 184, 0.25);
+  border-radius: 14px;
+  color: #1d2d3d;
+  resize: none;
+}
+
+.input-area button {
+  width: 120px;
+  background: linear-gradient(135deg, #8ecbff 0%, #5ea6e8 100%);
+  border: none;
+  border-radius: 14px;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .mentor-container {
+    padding: 20px 16px;
+  }
+
+  .input-area {
+    flex-direction: column;
+  }
+
+  .input-area button {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .user-message,
+  .ai-message {
+    max-width: 90%;
+  }
+}

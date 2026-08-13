@@ -1,0 +1,97 @@
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(120, 145, 175, 0.16);
+  box-shadow: 10px 0 25px rgba(122, 146, 173, 0.08);
+  padding: 28px 18px;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.logo {
+  color: #2a6eb4;
+  margin-bottom: 34px;
+  font-size: 1.45rem;
+  letter-spacing: -0.04em;
+}
+
+.sidebar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar li {
+  margin: 0;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  color: #536b80;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+.sidebar a:hover {
+  background: rgba(143, 197, 255, 0.14);
+  color: #214d72;
+}
+
+.sidebar a .svg-inline--fa,
+.sidebar a svg {
+  color: inherit;
+  min-width: 16px;
+}
+
+.sidebar a.active {
+  background: linear-gradient(135deg, rgba(143, 197, 255, 0.22), rgba(223, 235, 247, 0.92));
+  color: #235e9d;
+  box-shadow: inset 0 0 0 1px rgba(116, 171, 225, 0.16);
+}
+
+@media (max-width: 980px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(120, 145, 175, 0.16);
+    box-shadow: none;
+    padding: 18px 14px;
+  }
+
+  .sidebar ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sidebar a {
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .sidebar a {
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 110px;
+    text-align: center;
+    padding: 12px 10px;
+  }
+
+  .logo {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+}
