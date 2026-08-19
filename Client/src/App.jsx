@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
@@ -13,6 +13,10 @@ import CareerMentor from "./pages/CareerMentor";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 
+function ProtectedRoute({ children }) {
+  return localStorage.getItem("token") ? children : <Navigate to="/login" replace />;
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -20,15 +24,16 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/resume-analyzer" element={<ResumePage />} />
-        <Route path="/interview-prep" element={<InterviewPage />} />
-        <Route path="/study-assistant" element={<StudyAssistant />} />
-        <Route path="/help-desk" element={<HelpDesk />} />
-        <Route path="/career-roadmap" element={<CareerRoadmap />} />
-        <Route path="/career-mentor" element={<CareerMentor />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/resume-analyzer" element={<ProtectedRoute><ResumePage /></ProtectedRoute>} />
+        <Route path="/interview-prep" element={<ProtectedRoute><InterviewPage /></ProtectedRoute>} />
+        <Route path="/study-assistant" element={<ProtectedRoute><StudyAssistant /></ProtectedRoute>} />
+        <Route path="/help-desk" element={<ProtectedRoute><HelpDesk /></ProtectedRoute>} />
+        <Route path="/career-roadmap" element={<ProtectedRoute><CareerRoadmap /></ProtectedRoute>} />
+        <Route path="/career-mentor" element={<ProtectedRoute><CareerMentor /></ProtectedRoute>} />
+        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import axios from "axios";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import "../styles/dashboard.css";
 import "../styles/careerRoadmap.css";
 import { appContent } from "../data/siteContent";
+import api from "../lib/api";
 
 const { roadmap } = appContent;
 
@@ -23,10 +23,7 @@ function CareerRoadmap() {
       formData.append("role", role);
       formData.append("skills", skills);
 
-      const response = await axios.post(
-        "http://localhost:5000/api/roadmap/analyze",
-        formData
-      );
+      const response = await api.post("/roadmap/analyze", formData);
       setResult(response.data);
     } catch (error) {
       console.error(error);

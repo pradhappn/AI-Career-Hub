@@ -115,6 +115,17 @@ export const appContent = {
     send: "Send",
     thinking: "Thinking...",
   },
+  helpDesk: {
+    title: "Help Desk",
+    subtitle: "Find quick answers or contact the support team.",
+    search: "Search help articles",
+    contact: "Contact support",
+    articles: [
+      { question: "How do I analyze a resume?", answer: "Open Resume Analyzer, choose a PDF, and select Analyze Resume." },
+      { question: "Why is AI generation unavailable?", answer: "The server needs a valid GEMINI_API_KEY in Server/.env before AI services can respond." },
+      { question: "How do I update my profile?", answer: "Open Settings, update your details, and save the changes." },
+    ],
+  },
   profile: {
     title: "Profile",
     subtitle: "User profile information will appear here.",

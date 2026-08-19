@@ -10,6 +10,10 @@ exports.registerUser = async (req, res) => {
 
     const { name, email, password } = req.body;
 
+    if (!name?.trim() || !email?.trim() || !password || password.length < 6) {
+      return res.status(400).json({ message: "Name, email and a 6-character password are required" });
+    }
+
     const userExists = await User.findOne({
       email
     });
@@ -30,7 +34,9 @@ exports.registerUser = async (req, res) => {
         password: hashedPassword
       });
 
-    res.status(201).json(user);
+    const safeUser = user.toObject();
+    delete safeUser.password;
+    res.status(201).json(safeUser);
 
   } catch (error) {
     res.status(500).json(error);
@@ -97,9 +103,9 @@ exports.updateProfile = async (req, res) => {
   const user = await User.findByIdAndUpdate(
     req.user.id,
     {
-      name,
-      role,
-      skills: skills.split(",")
+      ...(name?.trim() ? { name: name.trim() } : {}),
+      ...(role?.trim() ? { role: role.trim() } : {}),
+      ...(typeof skills === "string" ? { skills: skills.split(",").map((item) => item.trim()).filter(Boolean) } : {})
     },
     { new: true }
   );

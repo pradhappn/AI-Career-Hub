@@ -1,6 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
 import "../styles/resume.css";
+import api from "../lib/api";
 
 function ResumeAnalyzer() {
 
@@ -23,10 +23,7 @@ function ResumeAnalyzer() {
 
       formData.append("resume", file);
 
-      const response = await axios.post(
-        "http://localhost:5000/api/resume/analyze",
-        formData
-      );
+      const response = await api.post("/resume/analyze", formData);
 
       setAnalysis(response.data);
 

@@ -9,8 +9,7 @@ getProfile
 } =
 require("../controllers/userController");
 
-const auth =
-require("../middleware/auth");
+const auth = require("../middleware/authMiddleware");
 
 router.get(
 "/profile",

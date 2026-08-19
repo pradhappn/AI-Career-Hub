@@ -1,10 +1,10 @@
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
-import { useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import "../styles/dashboard.css";
 import "../styles/settings.css";
 import { appContent } from "../data/siteContent";
+import api from "../lib/api";
 
 const { settings } = appContent;
 
@@ -15,15 +15,18 @@ function Settings() {
     skills: "",
   });
 
-  const updateProfile = async () => {
-    const token = localStorage.getItem("token");
+  useEffect(() => {
+    api.get("/user/profile").then(({ data }) => setForm({
+      name: data.name || "",
+      role: data.role || "",
+      skills: data.skills?.join(", ") || "",
+    })).catch(() => {});
+  }, []);
 
+  const updateProfile = async () => {
     try {
-      await axios.put("http://localhost:5000/api/auth/update", form, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.put("/auth/update", form);
+      localStorage.setItem("user", JSON.stringify(response.data));
 
       alert("Profile Updated");
     } catch (err) {

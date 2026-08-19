@@ -2,10 +2,19 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import "../styles/dashboard.css";
 import { appContent } from "../data/siteContent";
+import { useState } from "react";
 
-const { dashboard, user } = appContent;
+const { dashboard } = appContent;
 
 function Dashboard() {
+  const [user] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("user")) || appContent.user;
+    } catch {
+      return appContent.user;
+    }
+  });
+
   return (
     <div className="dashboard">
       <Sidebar />

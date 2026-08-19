@@ -1,10 +1,10 @@
 const express = require("express");
 const multer = require("multer");
-const { generateStudyMaterial } = require("../controllers/studyController");
+const { analyzeRoadmap } = require("../controllers/roadmapController");
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
-router.post("/generate", upload.single("notes"), generateStudyMaterial);
+router.post("/analyze", upload.single("resume"), analyzeRoadmap);
 
 module.exports = router;

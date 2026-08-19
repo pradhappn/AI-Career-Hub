@@ -1,9 +1,17 @@
 import "../styles/navbar.css";
 import { appContent } from "../data/siteContent";
 
-const { user } = appContent;
+const getStoredUser = () => {
+  try {
+    return JSON.parse(localStorage.getItem("user")) || appContent.user;
+  } catch {
+    return appContent.user;
+  }
+};
 
 function Navbar() {
+  const user = getStoredUser();
+
   return (
     <div className="navbar-top">
       <input type="text" placeholder="Search..." />

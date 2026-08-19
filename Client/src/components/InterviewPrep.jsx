@@ -1,7 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
 import "../styles/interviewPrep.css";
 import { appContent } from "../data/siteContent";
+import api from "../lib/api";
 
 const { interview } = appContent;
 
@@ -17,7 +17,7 @@ function InterviewPrep() {
     if (!role) return alert("Please select a role");
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:5000/api/interview/generate", { role });
+      const res = await api.post("/interview/generate", { role });
       setQuestions(res.data.questions || []);
       setCurrentQuestion(0);
       setEvaluation(null);
@@ -33,7 +33,7 @@ function InterviewPrep() {
   const submitAnswer = async () => {
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:5000/api/interview/evaluate", {
+      const res = await api.post("/interview/evaluate", {
         question: questions[currentQuestion],
         answer,
       });

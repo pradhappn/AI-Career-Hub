@@ -1,10 +1,10 @@
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
-import axios from "axios";
 import "../styles/dashboard.css";
 import "../styles/studyAssistant.css";
 import { appContent } from "../data/siteContent";
+import api from "../lib/api";
 
 const { study } = appContent;
 
@@ -20,10 +20,7 @@ function StudyAssistant() {
       setLoading(true);
       const formData = new FormData();
       formData.append("notes", file);
-      const res = await axios.post(
-        "http://localhost:5000/api/study/generate",
-        formData
-      );
+      const res = await api.post("/study/generate", formData);
       setStudyData(res.data);
     } catch (error) {
       console.error(error);

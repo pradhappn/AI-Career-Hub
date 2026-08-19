@@ -1,11 +1,5 @@
 const pdf = require("pdf-parse");
-const { GoogleGenerativeAI } =
-  require("@google/generative-ai");
-
-const genAI =
-  new GoogleGenerativeAI(
-    process.env.GEMINI_API_KEY
-  );
+const { generateJson } = require("../services/geminiService");
 
 exports.analyzeResume = async (
   req,
@@ -27,11 +21,6 @@ exports.analyzeResume = async (
     const resumeText =
       pdfData.text;
 
-    const model =
-      genAI.getGenerativeModel({
-        model: "gemini-2.5-flash"
-      });
-
     const prompt = `
 Analyze this resume.
 
@@ -49,30 +38,9 @@ Resume:
 ${resumeText}
 `;
 
-    const result =
-      await model.generateContent(
-        prompt
-      );
-
-    let response =
-      result.response.text();
-
-    response = response
-      .replace("```json", "")
-      .replace("```", "")
-      .trim();
-
-    const parsed =
-      JSON.parse(response);
-
-    res.json(parsed);
+    res.json(await generateJson(prompt));
 
   } catch (error) {
-    console.log(error);
-
-    res.status(500).json({
-      message:
-        "Analysis failed"
-    });
+    res.status(error.statusCode || 500).json({ message: error.statusCode === 503 ? error.message : "Analysis failed" });
   }
 };

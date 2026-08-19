@@ -1,12 +1,4 @@
-const {
-GoogleGenerativeAI
-} =
-require("@google/generative-ai");
-
-const genAI =
-new GoogleGenerativeAI(
-process.env.GEMINI_API_KEY
-);
+const { generateText } = require("../services/geminiService");
 
 exports.askMentor =
 async (req,res) => {
@@ -16,26 +8,14 @@ try {
 const { question } =
 req.body;
 
-const model =
-genAI.getGenerativeModel({
-model:"gemini-2.5-flash"
-});
-
-const result =
-await model.generateContent(
-question
-);
-
-const answer =
-result.response.text();
+const answer = await generateText(question);
 
 res.json({
 answer
 });
 
 } catch(error){
-
-res.status(500).json(error);
+res.status(error.statusCode || 500).json({ message: error.statusCode === 503 ? error.message : "Mentor unavailable" });
 
 }
 

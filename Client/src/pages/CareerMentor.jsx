@@ -1,10 +1,10 @@
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
-import axios from "axios";
 import "../styles/dashboard.css";
 import "../styles/careerMentor.css";
 import { appContent } from "../data/siteContent";
+import api from "../lib/api";
 
 const { mentor } = appContent;
 
@@ -22,10 +22,7 @@ function CareerMentor() {
       const userMessage = { type: "user", text: question };
       setMessages((prev) => [...prev, userMessage]);
 
-      const response = await axios.post(
-        "http://localhost:5000/api/mentor/ask",
-        { question }
-      );
+      const response = await api.post("/mentor/ask", { question });
 
       const aiMessage = { type: "ai", text: response.data.answer };
       setMessages((prev) => [...prev, aiMessage]);
